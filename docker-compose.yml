@@ -1,0 +1,19 @@
+services:
+
+  backend:
+    build: 
+      context: ./src/backend/
+      dockerfile: Dockerfile
+    image: back_django
+    volumes:
+      - ./src/backend:/app/
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: 
+      context: ./src/frontend/
+      dockerfile: Dockerfile
+    image: front_spike
+    ports:
+      - "4200:4200"

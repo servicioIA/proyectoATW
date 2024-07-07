@@ -1,0 +1,54 @@
+<div class="col-lg-12 col-sm-6">
+  <mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <mat-card-title>Seleccione persona</mat-card-title>
+      <form class="row m-t-24" [formGroup]="peopleFormGroup" (submit)="getPerson()">
+        
+        <mat-form-field>
+          <mat-select
+            placeholder="Seleccione persona"
+            [formControl]="peopleFormGroup.controls.personControl"
+            required
+          >
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let p of people" [value]="p.id">
+              {{ p.nombre }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="peopleFormGroup.controls.personControl.hasError('required')"
+            >Por favor, seleccione una persona</mat-error
+          >
+        </mat-form-field>
+        <a mat-raised-button color="primary" [routerLink]="['people']">Administrar personas</a>
+        <div class="col-12">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!peopleFormGroup.valid">Enviar</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="col-12" [hidden]="!showData">
+  <mat-card class="cardWithShadow">
+    <mat-card-content class="p-24">
+      <div class="row">
+        <div class="col-12">
+          <h1>Datos</h1></div>
+        <div class="col-12">
+          <ul>
+            <li><h2>Hola, {{ person.nombre }}</h2></li>
+            <li>
+              <h2>Sus datos son:</h2>
+              <ul>
+                <li><h3>Imagen de perfil:</h3><img [src]="avatarLink" alt="avatar"></li>
+                <li><h3>Fecha de nacimiento: {{ person.f_nacimiento }}</h3></li>
+                <li><h3>Ciudad: {{ person.ciudad }}</h3></li>
+              </ul>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
