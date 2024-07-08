@@ -1,0 +1,39 @@
+<!-- templates/chat.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+</head>
+<body>
+    <h2>Chat</h2>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="mensaje" placeholder="Escribe tu mensaje" required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <div>
+        <h3>Conversación</h3>
+        <ul>
+            {% for entrada in conversacion %}
+                <li><strong>Tú:</strong> {{ entrada.mensaje }}</li>
+                <li><strong>Bot:</strong> {{ entrada.respuesta }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <form method="post" action="{% url 'reiniciar_conversacion' %}">
+            {% csrf_token %}
+            <button type="submit">Reiniciar Conversación</button>
+        </form>
+    </div>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

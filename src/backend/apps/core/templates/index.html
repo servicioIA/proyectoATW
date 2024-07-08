@@ -1,5 +1,22 @@
+<!-- templates/importar_preguntas.html -->
+<!DOCTYPE html>
 <html>
-    <body>
-        <h1>Hola, Mundo</h1>
-    </body>
+<head>
+    <title>Importar Preguntas</title>
+</head>
+<body>
+    <h2>Importar Preguntas</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Importar</button>
+    </form>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
 </html>

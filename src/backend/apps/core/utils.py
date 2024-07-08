@@ -53,3 +53,18 @@ def borrar_persona(i=None):
             raise Http404
     else:
         raise Http404
+    
+
+from .models import DatosEntrenamiento
+
+def entrenar_modelo():
+    datos = DatosEntrenamiento.objects.all()
+    preguntas = [dato.pregunta for dato in datos]
+    respuestas = [dato.respuesta for dato in datos]
+
+    # Aquí va la lógica para entrenar el modelo de chatbot
+    modelo = some_ml_library.ChatbotModel()
+    modelo.entrenar(preguntas, respuestas)
+
+    # Guardar el modelo entrenado en un archivo o base de datos según sea necesario
+    modelo.guardar('ruta/al/archivo/modelo_entrenado.pkl')

@@ -1,0 +1,22 @@
+<!-- templates/importar_datos_entrenamiento.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Importar Datos de Entrenamiento</title>
+</head>
+<body>
+    <h2>Importar Datos de Entrenamiento</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Importar</button>
+    </form>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
